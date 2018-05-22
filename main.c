@@ -86,7 +86,11 @@ int	main(int ac, char **av)
 	for (int i = 0; av[i]; i++) {
 		all = fill_things(av[i], av[i+1], all);
 	}
-	print_head_files(file, all.lines, all);
-
-	return (0);
+	if (all.error != 84)
+		print_head_files(file, all.lines, all);
+	for (int i = 0; file[i] != NULL; i++) {
+		free(file[i]);
+	}
+	free(file);
+	return (all.error);
 }
