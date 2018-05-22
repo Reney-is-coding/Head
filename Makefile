@@ -5,7 +5,7 @@
 ## Makefile for duostumper2
 ##
 
-CFLAGS	=	-W -Wall -Wextra
+CFLAGS	=	-W -Wall -Wextra -g3
 
 SRCS 	=	main.c		\
 		head.c		\
