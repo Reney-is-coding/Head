@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <fcntl.h>
 #include <string.h>
+#include "struct.h"
 
 char *get_next_line(int);
 

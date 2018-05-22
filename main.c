@@ -10,9 +10,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "include/my.h"
-#include "include/struct.h"
 
-/*all_t fill_strutct(void)
+all_t fill_strutct(void)
 {
 	all_t all;
 
@@ -23,6 +22,16 @@
 	all.q_handling = 0;
 	all.v_handling = 0;
 	all.error = 0;
+	return (all);
+}
+
+all_t fill_seconds(char *arg, all_t all)
+{
+	if (strcmp(arg, "-v") == 0 || strcmp(arg, "--verbose") == 0)
+	 	all.v_handling = 1;
+	if (strcmp(arg, "-q") == 0 || strcmp(arg, "--quiet") == 0 ||
+	strcmp(arg, "--silent") == 0)
+		all.q_handling = 1;
 	return (all);
 }
 
@@ -46,18 +55,36 @@ all_t fill_things(char *arg, char  *follow, all_t all)
 		all.n_handling = 1;
 		all.c_handling = 0;
 	}
+	all = fill_seconds(arg, all);
 	return (all);
 }
-*/
+
+char **fill_file(int ac, char **av)
+{
+	char **file = malloc(sizeof(char *) * (ac + 1));
+	int j = 0;
+
+	for (int i = 1; i != ac; ++i) {
+		if (av[i][0] == '-') {
+			continue;
+		} else if (av[i][0] >= '0' && av[i][0]<='9' && av[i-1][0] == '-') {
+			continue;
+		} else {
+			for (j = 0; file[j] != NULL; ++j);
+			file[j] = av[i];
+		}
+	}
+	return (file);
+}
 
 int	main(int ac, char **av)
 {
-	char *file[2] = {"Makefile", NULL};
-/*	all_t all = fill_strutct;
+	all_t all = fill_strutct();
+	char **file = fill_file(ac, av);
 	for (int i = 0; av[i]; i++) {
 		all = fill_things(av[i], av[i+1], all);
 	}
-*/	print_head_files(file, 4, all);
+	print_head_files(file, all.lines, all);
 
 	return (0);
 }
