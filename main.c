@@ -64,6 +64,8 @@ char **fill_file(int ac, char **av)
 	char **file = malloc(sizeof(char *) * (ac + 1));
 	int j = 0;
 
+	for (int i = 0; i != ac + 1; i++)
+		file[i] = NULL;
 	for (int i = 1; i != ac; ++i) {
 		if (av[i][0] == '-') {
 			continue;
