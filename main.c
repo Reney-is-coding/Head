@@ -12,7 +12,7 @@
 #include "include/my.h"
 #include "include/struct.h"
 
-/*all_t fill_strutct(void)
+all_t fill_strutct(void)
 {
 	all_t all;
 
@@ -23,6 +23,16 @@
 	all.q_handling = 0;
 	all.v_handling = 0;
 	all.error = 0;
+	return (all);
+}
+
+all_t fill_seconds(char *arg, all_t all)
+{
+	if (strcmp(arg, "-v") == 0 || strcmp(arg, "--verbose") == 0)
+	 	all.v_handling = 1;
+	if (strcmp(arg, "-q") == 0 || strcmp(arg, "--quiet") == 0 ||
+	strcmp(arg, "--silent") == 0)
+		all.q_handling = 1;
 	return (all);
 }
 
@@ -46,18 +56,18 @@ all_t fill_things(char *arg, char  *follow, all_t all)
 		all.n_handling = 1;
 		all.c_handling = 0;
 	}
+	all = fill_seconds(arg, all);
 	return (all);
 }
-*/
+
 
 int	main(int ac, char **av)
 {
 	char *file[2] = {"Makefile", NULL};
-/*	all_t all = fill_strutct;
+	all_t all = fill_strutct();
 	for (int i = 0; av[i]; i++) {
 		all = fill_things(av[i], av[i+1], all);
 	}
-*/	print_head_files(file, 4);
-
+	print_head_files(file, 4);
 	return (0);
 }
