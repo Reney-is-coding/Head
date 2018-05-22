@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** Head
+** get_next_line.?c
 ** File description:
-** main
+** this a header
 */
 
 #include <sys/types.h>
@@ -11,11 +11,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include <string.h>
+
+int my_strlen(char *str)
+{
+	int count = 0;
+
+	for (int i = 0; str[i] != '\0'; i++)
+		count++;
+	return (count);
+}
 
 char *my_strcat(char *str1, char *str2)
 {
-	char *end = malloc(sizeof(char) * (strlen(str1) + strlen(str2) + 1));
+	char *end = malloc(sizeof(char) * (my_strlen(str1) + my_strlen(str2) + 1));
 	int a = 0;
 
 	for (int i = 0; str1[i] != '\0'; i++) {
@@ -26,8 +34,7 @@ char *my_strcat(char *str1, char *str2)
 		end[a] = str2[i];
 		a++;
 	}
-	end[(strlen(str1) + strlen(str2))] = '\0';
-	free(str2);
+	end[(my_strlen(str1) + my_strlen(str2))] = '\0';
 	return (end);
 }
 
