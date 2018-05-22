@@ -13,4 +13,4 @@
 
 char *get_next_line(int);
 
-void print_head_files(char **, int);
+void print_head_files(char **, int, all_t);

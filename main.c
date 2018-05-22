@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 	for (int i = 0; av[i]; i++) {
 		all = fill_things(av[i], av[i+1], all);
 	}
-*/	print_head_files(file, 4);
+*/	print_head_files(file, 4, all);
 
 	return (0);
 }

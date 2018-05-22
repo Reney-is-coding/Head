@@ -7,7 +7,7 @@
 
 #include "include/my.h"
 
-void print_head_files(char **file, int line)
+void print_head_files(char **file, int line, all_t all)
 {
 	int i = 0;
 	int fd = 0;
@@ -23,7 +23,7 @@ void print_head_files(char **file, int line)
 			++i;
 			continue;
 		}
-		if (file[1] != NULL)
+		if ((file[1] != NULL || all.v_handling == 1) && all.q_handling == 0)
 			printf("==> %s <==\n", file[i]);
 		for (int j = 0; j != line; j++) {
 			s = get_next_line(fd);
