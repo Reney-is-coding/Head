@@ -8,6 +8,8 @@
 CFLAGS	=	-W -Wall -Wextra
 
 SRCS 	=	main.c		\
+		head.c		\
+		get_next_line.c	\
 
 OBJS	=	$(SRCS:.c=.o)
 

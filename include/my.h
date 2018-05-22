@@ -5,3 +5,11 @@
 ** my.h
 */
 
+#include <stdio.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <fcntl.h>
+
+char *get_next_line(int);
+
+void print_head_files(char **, int);

@@ -9,5 +9,7 @@
 
 int	main(int ac, char **av)
 {
+	char *file[3] = {"Makefile", "head.c", "my.h"};
+	print_head_files(file, 7);
 	return (0);
 }

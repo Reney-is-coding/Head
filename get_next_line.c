@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-#include "include/prototypes.h"
 
 char *get_next_line(int fd)
 {
