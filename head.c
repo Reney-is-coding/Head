@@ -47,53 +47,74 @@ void print_other(int line, int fd, char *path)
 	close(fd);
 }
 
+void print_file(int line, int fd)
+{
+	char *s;
+
+	for (int j = 0; j != line; j++) {
+		s = get_next_line(fd);
+		if (s == NULL)
+		break;
+		printf("%s\n", s);
+	}
+}
+
+all_t check_null(char **file, all_t all)
+{
+	if (file[0] == NULL) {
+		all.fd = 0;
+		all.check = 1;
+	}
+	return (all);
+}
+
+int check_file(all_t *all, int i, char *s)
+{
+	printf("Invalid file name : %s\n", s);
+	++i;
+	all->check = 0;
+	return (i);
+}
+
+int print_c1(all_t *all, int i)
+{
+	print_c(all->fd, all->c_bytes);
+	i++;
+	all->check = 0;
+	return (i);
+}
+
 void print_head_files(char **file, int line, all_t all)
 {
 	int i = 0;
-	int fd = -1231;
-	char *s = NULL;
-	int check = 0;
 
-	if (file[0] == NULL) {
-		fd = 0;
-		check = 1;
-	}
-
-	while (file[i] != NULL || check == 1) {
-		if (check == 0) {
-			fd = open(file[i], O_RDONLY);
+	all = check_null(file, all);
+	while (file[i] != NULL || all.check == 1) {
+		if (all.check == 0) {
+			all.fd = open(file[i], O_RDONLY);
 		}
-		if (fd == -1) {
-			printf("Invalid file name : %s\n", file[i]);
-			++i;
-			check = 0;
+		if (all.fd == -1) {
+			i = check_file(&all, i, file[i]);
 			continue;
 		}
 		if ((file[1] != NULL || all.v_handling == 1) && all.q_handling == 0)
 			printf("==> %s <==\n", file[i]);
 		if (all.c_handling == 1) {
-			print_c(fd, all.c_bytes);
-			i++;
-			check = 0;
+			i = print_c1(&all, i);
 			continue;
 		}
 		if (line < 0) {
-			print_other(line, fd, file[i]);
+			print_other(line, all.fd, file[i]);
 			i++;
-			check = 0;
+			all.check = 0;
 			continue;
 		}
-		for (int j = 0; j != line; j++) {
-			s = get_next_line(fd);
-			if (s == NULL)
-				break;
-			printf("%s\n", s);
-		}
-		if (fd != -1)
-			close(fd);
+		print_file(line, all.fd);
+		if (all.fd != -1)
+			close(all.fd);
 		if (file[i + 1] != NULL)
 			printf("\n");
 		i++;
-		check = 0;
+		all.check = 0;
 	}
 }

@@ -13,4 +13,6 @@ typedef struct all_s {
 	int q_handling;
 	int v_handling;
 	int error;
+	int fd;
+	int check;
 } all_t;

@@ -22,6 +22,8 @@ all_t fill_strutct(void)
 	all.q_handling = 0;
 	all.v_handling = 0;
 	all.error = 0;
+	all.fd = -1231;
+	all.check = 0;
 	return (all);
 }
 
