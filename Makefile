@@ -13,7 +13,7 @@ SRCS 	=	main.c		\
 
 OBJS	=	$(SRCS:.c=.o)
 
-NAME	=	Head
+NAME	=	head
 
 all: 	$(NAME)
 

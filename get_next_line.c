@@ -1,9 +1,34 @@
+/*
+** EPITECH PROJECT, 2018
+** Head
+** File description:
+** main
+*/
+
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
+
+char *my_strcat(char *str1, char *str2)
+{
+	char *end = malloc(sizeof(char) * (strlen(str1) + strlen(str2) + 1));
+	int a = 0;
+
+	for (int i = 0; str1[i] != '\0'; i++) {
+		end[a] = str1[i];
+		a++;
+	}
+	for (int i = 0; str2[i] != '\0'; i++) {
+		end[a] = str2[i];
+		a++;
+	}
+	end[(strlen(str1) + strlen(str2))] = '\0';
+	return (end);
+}
 
 char *get_next_line(int fd)
 {
