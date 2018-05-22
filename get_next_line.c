@@ -27,6 +27,7 @@ char *my_strcat(char *str1, char *str2)
 		a++;
 	}
 	end[(strlen(str1) + strlen(str2))] = '\0';
+	free(str2);
 	return (end);
 }
 

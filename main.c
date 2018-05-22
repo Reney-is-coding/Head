@@ -22,8 +22,6 @@ all_t fill_strutct(void)
 	all.q_handling = 0;
 	all.v_handling = 0;
 	all.error = 0;
-	all.fd = -1231;
-	all.check = 0;
 	return (all);
 }
 
@@ -90,9 +88,6 @@ int	main(int ac, char **av)
 	}
 	if (all.error != 84)
 		print_head_files(file, all.lines, all);
-	for (int i = 0; file[i] != NULL; i++) {
-		free(file[i]);
-	}
 	free(file);
 	return (all.error);
 }
